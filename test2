@@ -1,0 +1,144 @@
+/* test 2 */
+
+
+/* prima variabila gloabala */
+
+variable    boBB    ::=     {a   , b   , c   } ;
+
+/* lkasjdjkaskldjlaks
+jdasd
+*/
+
+grammar1 ::= Grammar (
+	alphabet :: { a, b };
+	nonterminals :: { S, S1, S3 };
+	start_symbol :: S1;
+
+	S1 -> a&S&a | b&S&b | S1;
+	S -> a&S1 | b&S1 | boBB&S3;
+);;
+
+
+
+automatulNr1 ::= FiniteAutomaton (
+	states :: {q0, q2, q4, q6} ; 
+	final_states :: { q2 } ;
+	initial_state :: q4 ;
+	% asdhagsdjhasdjadjhagsjhgd
+	variable llop ::= {1, 4 , 9} ;
+	alphabet :: {a, b, d, 1, 3, 4, 9};
+	% akshdgajhsgdjhasd
+	q0 -> (
+		1 -> q2 ;
+		llop -> q1 ;
+	) ;
+) ;;
+
+
+variable    test ::= {a,b,c,1,9,f} ;
+
+
+grammar2    ::=     Grammar    (     
+	nonterminals :: { S, S1 } ;
+	alphabet :: { a, b } ;
+	start_symbol :: S ;
+
+	S2 -> a&S|b&S1&test|S ;
+) ;;
+
+autoamatulNR2 ::= FiniteAutomaton
+(
+	initial_state :: q2 ;
+
+	variable vvv ::= {1, a , b} ;
+
+	states :: {q0, q2, q4} ; 
+	alphabet :: {a, b, f, 3, 4};
+	q0 -> (
+		a -> q1 ;
+		vvv -> q2 ;
+		b -> q2 ;
+	) ;
+	final_states :: { q2 ,    q4} ;
+
+)    ;;    
+
+/* o noua variabila gloabala */
+
+variable    xyZ    ::=     {x   , y   , z   } ;
+
+variable    w  ::=     {y   , z , w  } ;  
+
+/* comentariu 
+random
+*/
+
+grammarAlpha ::= Grammar (
+	alphabet :: { x, y };
+	nonterminals :: { A, B, C };
+	start_symbol :: A;
+
+	A -> x&B&x | y&C&y | A;
+	B -> x&A | y&C | xyZ&C;
+);;
+
+automaton123 ::= FiniteAutomaton (
+	states :: {p0, p2, p4, p6} ; 
+	final_states :: { p2 } ;
+	initial_state :: p4 ;
+
+	% variabila locala
+	variable abcdef ::= {5, 8 , 10} ;
+	alphabet :: {x, y, z, 1, 2, 8, 5};
+
+	% prima tranzitie
+	p0 -> (
+		1 -> p2 ;
+		abcdef -> p1 ;
+	) ;
+
+	p2 -> (
+		z -> p2 ;
+		boBB -> p1 ;
+	) ;
+) ;;
+
+
+variable    exampleVar ::= {x,y,z,5,8,j} ;
+
+
+grammarBeta    ::=     Grammar    (     
+	nonterminals :: { X, Y } ;
+	alphabet :: { x, y } ;
+	start_symbol :: X ;
+
+	X1 -> x&Y|y&X1&exampleVar|X ;
+) ;;
+
+automatonXYZ ::= FiniteAutomaton
+(
+	initial_state :: p2 ;
+
+	variable tempVar ::= {5, x , y} ;
+
+	states :: {p0, p2, p4} ; 
+	alphabet :: {x, y, j, 2, 5};
+	p0 -> (
+		x -> p1 ;
+		tempVar -> p2 ;
+		y -> p2 ;
+	) ;
+	final_states :: { p2 ,    p4} ;
+
+)    ;;    
+
+
+grammarGamma    ::=     Grammar    (     
+	nonterminals :: { Z, A, B, C, D, E } ;
+	alphabet :: { x, y, z, w, m, n, p, 4, 5, 6 } ;
+	start_symbol :: E ;
+
+	E&x -> x&B|y&C&exampleVar|Z&a ;
+
+	D -> x&B|y&C|Z ;
+) ;;

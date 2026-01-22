@@ -1,0 +1,68 @@
+/* test 1 */
+
+variable    abc    ::=     {p   , q   , r   } ;
+
+variable    m  ::=     {p   , r , t  } ;  
+
+grammarDelta ::= Grammar (
+	alphabet :: { p, q };
+	nonterminals :: { U, V, W };
+	start_symbol :: U;
+
+	U -> p&V&p | q&W&q | U;
+	W -> p&U | q&V | abc&W;
+);;
+
+automatonTest123 ::= FiniteAutomaton (
+	% variabila locala
+	variable testVar ::= {2, 4 , 6} ;
+	states :: {s0, s1, s2, s3} ; 
+	final_states :: { s2 } ;
+	initial_state :: s1 ;
+	alphabet :: {p, q, t, 3, 5, 6};
+	% transition comments for test
+	s0 -> (
+		2 -> s2 ;
+		testVar -> s3 ;
+	) ;
+) ;;
+
+
+variable    randomVar ::= {p,q,r,2,6,k} ;
+
+
+grammarTheta    ::=     Grammar    (     
+	nonterminals :: { Z, W } ;
+	alphabet :: { p, q } ;
+	start_symbol :: Z ;
+
+	Z1 -> p&W|q&Z1&randomVar|W ;
+) ;;
+
+automatonAlpha ::= FiniteAutomaton
+(
+	initial_state :: s2 ;
+
+	variable anotherVar ::= {2, p , q} ;
+
+	states :: {s0, s2, s3} ; 
+	alphabet :: {p, q, k, 5, 6};
+	s0 -> (
+		p -> s1 ;
+		anotherVar -> s2 ;
+		q -> s2 ;
+	) ;
+	final_states :: { s2 ,    s3} ;
+
+)    ;;    
+
+
+grammarEpsilon    ::=     Grammar    (     
+	nonterminals :: { X, U, V, W, Z, Y } ;
+	alphabet :: { p, q, r, t, m, n, o, 3, 7, 8 } ;
+	start_symbol :: Y ;
+
+	Y -> p&V|q&W&randomVar|X ;
+
+	Z -> p&V|q&W|Y ;
+) ;;
