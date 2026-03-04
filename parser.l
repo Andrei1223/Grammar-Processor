@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stack>
 #include <vector>
-//#include <string>
+#include <string>
+#include <utility>
 
 #define YY_NO_UNPUT
 #undef yywrap

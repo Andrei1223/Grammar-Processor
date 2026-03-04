@@ -1,10 +1,5 @@
-# Timofte_Andrei-Ioan_335CC 
-
 build:
-	flex main.l && g++ -std=c++11 -o main lex.yy.c -ll
-
-run:
-	./main
+	flex parser.l && g++ -std=c++11 -o parser lex.yy.c -ll
 
 clean:
-	rm lex.yy.c main
+	rm lex.yy.c parser
